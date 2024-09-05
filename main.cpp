@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#ifdef ONLINE_JUDGE
+#ifndef LOCAL
 #define deb(n)
 #define debar(ar, size)
 #else

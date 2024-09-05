@@ -5,7 +5,7 @@ LINKS =
 EXE = exe
 
 cf: main.cpp
-	$(CC) -DONLINE_JUDGE $(CFLAGS) $(LINKS) $^ -o $(EXE)
+	$(CC) $(CFLAGS) $(LINKS) $^ -o $(EXE)
 
 deb: main.cpp
-	$(CC) $(LINKS) $^ -o $(EXE)
+	$(CC) -DLOCAL $(LINKS) $^ -o $(EXE)
