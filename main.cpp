@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#ifndef LOCAL
+#ifndef DEBUG
 #define deb(n)
 #define debar(ar, size)
 #else
