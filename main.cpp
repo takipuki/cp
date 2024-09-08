@@ -1,12 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#ifndef DEBUG
-#define deb(n)
-#define debar(ar, size)
+#ifdef DEBUG
+#include "debug.cpp"
 #else
-#define deb(n) cout << #n << " = " << (n) << '\n'
-#define debar(ar, size) cout << #ar << " = "; for (ll i = 0; i < size; i++) cout << ar[i] << ' '; cout << '\n'
+#define deb(...)
+#define debar(ar, size)
 #endif
 
 #define UwU ios_base::sync_with_stdio(0),cin.tie(0)
