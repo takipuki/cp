@@ -24,4 +24,3 @@ template <typename T, typename... V>
 void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v...);}
 
 #define deb(x...) {cerr << #x << " = "; _print(x);}
-#define debar(array, size) {cerr << #array << " = "; int f = 0; cerr << '{'; for (int _i_ = 0; _i_ < (size); _i_++) cerr << (f++ ? ", " : ""), __print(array[_i_]); cerr << "}\n";}
