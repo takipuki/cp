@@ -6,19 +6,24 @@ infile="in"
 ansfile="ans"
 
 parse () {
-	sed '/^$/d' |
-		sed '/Copy/d' |
-		sed 's/Sample //' |
-		while read -r line; do
-			if [ "$line" = "Input" ]; then
-				echo -n > $infile
-				f="$infile"
-			elif [ "$line" = "Output" ]; then
-				echo -n > $ansfile
-				f="$ansfile"
-			else echo $line >> $f
-			fi
-		done
+	text=$(grep -v 'Copy' | sed '/^$/d' </dev/stdin)
+
+	echo -n > $infile
+	echo -n > $ansfile
+
+	ts=$(grep -c 'Input' <<< "$text")
+	if [ "$ts" != "1" ]; then
+		echo $ts > $infile
+	fi
+
+	while read -r line; do
+		if [ "$line" = "Input" ]; then
+			f="$infile"
+		elif [ "$line" = "Output" ]; then
+			f="$ansfile"
+		else echo $line >> $f
+		fi
+	done <<< "$text"
 }
 
 tst () {
