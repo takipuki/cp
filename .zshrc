@@ -1,12 +1,13 @@
 
 src="main.cpp"
-bin="o_o"
-deb="O_O"
+bin="bin"
+deb="deb"
 infile="in"
 ansfile="ans"
+std="c++17"
 
 parse () {
-	text=$(grep -v 'Copy' | sed '/^$/d' </dev/stdin)
+	text=$(grep -v 'Copy' | sed '/^$/d' | sed 's/Sample //' </dev/stdin)
 
 	echo -n > $infile
 	echo -n > $ansfile
@@ -46,12 +47,12 @@ run () {
 
 bld () {
 	if [ "$src" -nt "$bin" ]; then
-		g++ $src -std=c++17 -o $bin $@
+		g++ $src -std=$std -o $bin $@
 	fi
 }
 
 bld_deb() {
 	if [ "$src" -nt "$deb" ]; then
-		g++ $src -std=c++17 -o $deb -DDEBUG
+		g++ $src -std=$std -o $deb -DDEBUG
 	fi
 }
