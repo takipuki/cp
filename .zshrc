@@ -1,30 +1,42 @@
 
 src="main.cpp"
-bin="bin"
-deb="deb"
 infile="in"
 ansfile="ans"
-std="c++17"
+std="c++20"
 
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+	bin="bin"
+	deb="deb"
+elif [[ "$OSTYPE" == "cygwin" || "$OSTYPE" == "msys" ]]; then
+	bin="bin.exe"
+	deb="deb.exe"
+	alias pst="powershell.exe -c 'Get-Clipboard'"
+	alias cpy="clip.exe"
+fi
+
+touch $bin $deb
+chmod +x $bin $deb
+
+# supports codeforces, vjudge, atcoder
 parse () {
-	text=$(grep -v 'Copy' | sed '/^$/d' | sed 's/Sample //' </dev/stdin)
+	text=$(grep -v 'Copy' | sed '/^$/d' | sed 's/Sample //')
 
 	echo -n > $infile
 	echo -n > $ansfile
 
-	ts=$(grep -c 'Input' <<< "$text")
+	ts=$(echo "$text" | grep -c 'Input')
 	if [ "$ts" != "1" ]; then
 		echo $ts > $infile
 	fi
 
-	while read -r line; do
-		if [ "$line" = "Input" ]; then
+	echo "$text" | while read -r line; do
+		if [[ "$line" =~ "Input:?" ]]; then
 			f="$infile"
-		elif [ "$line" = "Output" ]; then
+		elif [[ "$line" =~ "Output:?" ]]; then
 			f="$ansfile"
 		else echo $line >> $f
 		fi
-	done <<< "$text"
+	done
 }
 
 tst () {
