@@ -7,6 +7,13 @@ std="c++20"
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	bin="bin"
 	deb="deb"
+	if [[ -n "$WAYLAND_DISPLAY" ]]; then
+		alias pst=wl-paste
+		alias cpy=wl-copy
+	else
+		alias pst="xclip -sel clip -o"
+		alias cpy="xclip -sel clip"
+	fi
 elif [[ "$OSTYPE" == "cygwin" || "$OSTYPE" == "msys" ]]; then
 	bin="bin.exe"
 	deb="deb.exe"
@@ -14,8 +21,14 @@ elif [[ "$OSTYPE" == "cygwin" || "$OSTYPE" == "msys" ]]; then
 	alias cpy="clip.exe"
 fi
 
-touch $bin $deb
-chmod +x $bin $deb
+if [ ! -f $bin ]; then
+	touch $bin
+	chmod +x $bin
+fi
+if [ ! -f $deb ]; then
+	touch $deb
+	chmod +x $deb
+fi
 
 # supports codeforces, vjudge, atcoder
 parse () {
@@ -27,6 +40,9 @@ parse () {
 	ts=$(echo "$text" | grep -c 'Input')
 	if [ "$ts" != "1" ]; then
 		echo $ts > $infile
+		feature="-DMULTI"
+	else
+		feature=""
 	fi
 
 	echo "$text" | while read -r line; do
@@ -54,16 +70,16 @@ comp () {
 }
 
 run () {
-	bld_deb  && ./$deb
+	bldd  && ./$deb
 }
 
 bld () {
 	if [ "$src" -nt "$bin" ]; then
-		g++ $src -std=$std -o $bin $@
+		g++ $src -std=$std -o $bin $feature
 	fi
 }
 
-bld_deb() {
+bldd() {
 	if [ "$src" -nt "$deb" ]; then
 		g++ $src -std=$std -o $deb -DDEBUG
 	fi
