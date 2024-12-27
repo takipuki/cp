@@ -15,24 +15,26 @@ using namespace std;
 #define ROF(i, init, n) for (auto i = (init), ___ = (n); i >= ___; i--)
 const int64_t MOD = 1e9 + 7;
 
-void solve()
-{
+#define OJMULTI
+void solve() {
 }
 
 /**
  * run your own tests
  */
 
-int main()
-{
-	#ifndef DEBUG
+int main() {
+#ifndef DEBUG
 	UwU;
-	#endif
+#endif
 	int ts = 1;
-	// cin >> ts;
-	// for (; cin >> n;) {
-	for (int t = 1; t <= ts; t++) {
+#if !defined(DEBUG) && (defined(OJMULTI) || defined(MULTI))
+	cin >> ts;
+#endif
+	// for (cin >> n; n; cin >> n) {
+	for (int t = 1; ts--; t++) {
 		// cout << "Case " << t << ": ";
 		solve();
 	}
 }
+
