@@ -14,7 +14,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 		alias pst="xclip -sel clip -o"
 		alias cpy="xclip -sel clip"
 	fi
-elif [[ "$OSTYPE" == "cygwin" || "$OSTYPE" == "msys" ]]; then
+else
 	bin="bin.exe"
 	deb="deb.exe"
 	alias pst="powershell.exe -c 'Get-Clipboard'"
@@ -62,11 +62,20 @@ tst () {
 }
 
 comp () {
+	awk -F '\t' '{ printf "%-36s", $1;
+	gsub(/[ \t]+$/, "", $1);
+	gsub(/[ \t]+$/, "", $2);
+	if ($1 != $2) printf "!  ";
+	else printf "   ";
+	printf "%s\n", $2 }'
+}
+
+comp_old () {
 	awk -F '\t' '{ printf "\033[0;32m%-39s", $1;
 	gsub(/[ \t]+$/, "", $1);
 	gsub(/[ \t]+$/, "", $2);
 	if ($1 != $2) printf "\033[0;31m";
-		printf "%s\033[0m\n", $2 }'
+	printf "%s\033[0m\n", $2 }'
 }
 
 run () {
