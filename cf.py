@@ -71,7 +71,7 @@ def test():
 	with open(fname_ans, 'r') as f_ans:
 		ans = f_ans.read().splitlines()
 
-	for a, o in zip(map(str.strip, out), map(str.strip, ans)):
+	for a, o in zip(map(str.strip, ans), map(str.strip, out)):
 		if a == o:
 			print(f'{a:<40}{o}')
 		else:
@@ -89,5 +89,5 @@ opts = {
 if len(sys.argv) > 1 and sys.argv[1] in opts:
 	opts[sys.argv[1]]()
 else:
-	print(f'commands: {', '.join(opts.keys())}')
+	print(f'commands: {", ".join(opts.keys())}')
 
