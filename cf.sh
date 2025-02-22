@@ -56,13 +56,11 @@ parse () {
 }
 
 tst () {
-	bld && ./$bin < $infile |
-		paste $ansfile - |
-		comp
+	bld && ./$bin < $infile | comp
 }
 
 comp () {
-	awk -F '\t' '{ printf "%-36s", $1;
+	paste $ansfile - | awk -F '\t' '{ printf "%-36s", $1;
 	gsub(/[ \t]+$/, "", $1);
 	gsub(/[ \t]+$/, "", $2);
 	if ($1 != $2) printf "!  ";
@@ -71,7 +69,7 @@ comp () {
 }
 
 comp_old () {
-	awk -F '\t' '{ printf "\033[0;32m%-39s", $1;
+	paste $ansfile - | awk -F '\t' '{ printf "\033[0;32m%-39s", $1;
 	gsub(/[ \t]+$/, "", $1);
 	gsub(/[ \t]+$/, "", $2);
 	if ($1 != $2) printf "\033[0;31m";

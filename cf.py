@@ -13,7 +13,7 @@ if os.name == 'nt':
 	deb += '.exe'
 
 def run():
-	build(deb, '-DDEBUG')
+	assert build(deb, '-DDEBUG') == 0
 	os.system(f'./{deb}')
 
 
@@ -25,7 +25,8 @@ def build(fname_bin, features=''):
 		except:
 			pass
 	if os.path.getmtime(src) > os.path.getmtime(fname_bin):
-		os.system(f'g++ {src} -std={std} -o {fname_bin} {features}')
+		return os.system(f'g++ {src} -std={std} -o {fname_bin} {features}')
+	return 0
 
 
 def parse():
@@ -62,7 +63,7 @@ def parse():
 
 
 def test():
-	build(bin)
+	assert build(bin) == 0
 
 	out = []
 	ans = []
@@ -80,8 +81,8 @@ def test():
 
 opts = {
 	'run': run,
-	'bld': lambda: build(bin),
-	'bldd': lambda: build(deb, '-DDEBUG'),
+	'build': lambda: build(bin),
+	'buildd': lambda: build(deb, '-DDEBUG'),
 	'parse': parse,
 	'test': test,
 }

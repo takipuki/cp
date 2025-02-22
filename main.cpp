@@ -13,7 +13,6 @@ using namespace std;
 #define REP(n) for (auto _ = (n); _--;)
 #define FOR(i, init, n) for (auto i = (init), __ = (n); i < __; i++)
 #define ROF(i, init, n) for (auto i = (init), ___ = (n); i >= ___; i--)
-const int64_t MOD = 1e9 + 7;
 
 #define OJMULTI
 void solve() {
@@ -24,7 +23,7 @@ void solve() {
  */
 
 int main() {
-#ifndef DEBUG
+#if !defined(DEBUG)
 	UwU;
 #endif
 	int ts = 1;
