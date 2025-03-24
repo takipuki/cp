@@ -10,30 +10,32 @@ using namespace std;
 
 #define UwU cin.tie(0)->sync_with_stdio(0)
 #define nl '\n'
-#define REP(n) for (auto _ = (n); _--;)
-#define FOR(i, init, n) for (auto i = (init), __ = (n); i < __; i++)
-#define ROF(i, init, n) for (auto i = (init), ___ = (n); i >= ___; i--)
+#define REP(n) for (int64_t _ = (n); _--;)
+#define FOR(i, init, n) for (int64_t i = (init), __ = (n); i < __; i++)
+#define ROF(i, init, n) for (int64_t i = (init), ___ = (n); i >= ___; i--)
+#define all(v) begin(v), end(v)
 
 #define OJMULTI
 void solve() {
 }
 
+
 /**
  * run your own tests
+ * edge cases n = 1, k = 1 etc.
  */
 
-int main() {
+signed main() {
+	int ts = 1;
+
 #if !defined(DEBUG)
 	UwU;
-#endif
-	int ts = 1;
-#if !defined(DEBUG) && (defined(OJMULTI) || defined(MULTI))
+#if defined(OJMULTI)
 	cin >> ts;
 #endif
-	// for (cin >> n; n; cin >> n) {
-	for (int t = 1; ts--; t++) {
-		// cout << "Case " << t << ": ";
+#endif
+
+	for (; ts--; ) {
 		solve();
 	}
 }
-
