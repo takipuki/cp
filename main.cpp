@@ -1,4 +1,4 @@
-#define _USE_MATH_DEFINES
+// vim: set ai si ts=4 sw=4 nu rnu nohls nowrap bg=light list lcs=tab\:\ \ :
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -15,10 +15,8 @@ using namespace std;
 #define ROF(i, init, n) for (int64_t i = (init), ___ = (n); i >= ___; i--)
 #define all(v) begin(v), end(v)
 
-#define OJMULTI
 void solve() {
 }
-
 
 /**
  * run your own tests
@@ -28,11 +26,9 @@ void solve() {
 signed main() {
 	int ts = 1;
 
-#if !defined(DEBUG)
+#ifndef DEBUG
 	UwU;
-#if defined(OJMULTI)
-	cin >> ts;
-#endif
+	// cin >> ts;
 #endif
 
 	for (; ts--; ) {

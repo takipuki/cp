@@ -1,7 +1,7 @@
-flags = -std=c++20
+flags = -std=c++23
 
-out/main: main.cpp
+out/main.exe: main.cpp
 	g++ $(flags) $^ -o $@
 
-out/deb: main.cpp
+out/deb.exe: main.cpp
 	g++ $(flags) -DDEBUG $^ -o $@
