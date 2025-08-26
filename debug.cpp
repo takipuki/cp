@@ -15,6 +15,11 @@ void __print(const char *x) {cout << '\"' << x << '\"';}
 void __print(const string &x) {cout << '\"' << x << '\"';}
 void __print(bool x) {cout << (x ? "true" : "false");}
 
+void __print(string::iterator it) {cout << *it;}
+
+template<size_t N>
+void __print(const bitset<N> &x) {cout << x;}
+
 template<typename T, typename V>
 void __print(const pair<T, V> &x) {
 	cout << '<';

@@ -14,13 +14,18 @@
         (printf "%-35s   %-35s\n" ansline outline)
         (printf "%-35s | %-35s\n" ansline outline)))))
 
-(defn run [in]
-  (-> (shell {:in in :out :string} "./main") :out))
+(defn run [tc in]
+  (let [proc (shell {:in in :out :string :err :string :continue true} "./main")]
+    (if (not (= 0 (:exit proc)))
+      (do
+        (printf "TEST#%d FAILED\n" tc)
+        (System/exit 1))
+      (:out proc))))
 
 (let [tests (as-> (slurp "in.txt") _
               (str/split _ #"[Ii]nput\n")
-              (map #(str/split % #"[Oo]utput\n") _))]
-  (doseq [[in ans] tests]
-    (cmp ans (run in))
-    (println "")))
+              (map #(str/split % #"[Oo]utput:?\n") _)
+              (map vector (range 1 (inc (count _))) _))]
+  (doseq [[tc [in ans]] tests]
+    (cmp ans (run tc in))))
 
