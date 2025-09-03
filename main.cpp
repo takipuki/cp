@@ -7,24 +7,23 @@ using namespace std;
 #define deb(...)
 #endif
 #define nl "\n"
-#define range(l, r) views::iota((decltype(r))(l), r)
-#define rrange(l, r) views::iota((decltype(r))(l), r) | views::reverse
+#define FOR(i, l, r) for (decltype(r) i = (l), _ = (r); i < _; i++)
+#define ROF(i, l, r) for (decltype(r) i = (r) - 1, _ = (l); i >= _; i--)
+#define REP(n) for (decltype(n) _ = (n); _ > 0; _--)
 
 void solve() {
 }
 
 signed main() {
-	signed ts = 1;
+	int ts = 1;
 
 #ifndef DEBUG
 	cin.tie(0)->sync_with_stdio(0);
-	cin >> ts;
+	// cin >> ts;
 #endif
 
-	for (int tc = 1; ; tc++) {
+	for (;;) {
 		if (!ts--) break;
 		solve();
 	}
 }
-
-// vim: set cinoptions+="(s,l1,:0" hid ai si ts=4 sw=4 nu rnu nohls nowrap bg=light list lcs=tab\:\ \ :

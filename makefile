@@ -9,15 +9,19 @@ flags = -std=c++23 \
 dflags = -g -Werror
 
 deb: main.cpp
-	g++ $(dflags) $(flags) -DDEBUG $< -o $@
+	g++ $(flags) $(dflags) -DDEBUG $< -o $@
 
 main: main.cpp
-	g++ $(flags) -O2 $< -o $@
+	g++ $(flags) -DNDEBUG -O2 $< -o $@
 
 parse:
-	sed -E 's/([Cc]opy|[Ss]ample) *//g' | sed -E '/^$$/d' | sed '1d' > in.txt
+	sed -E 's/([Cc]opy|[Ss]ample) *//g' \
+		| sed -E '/^$$/d' \
+		| sed -E 's/[Ii]nput/======/' \
+		| sed -E 's/[Oo]utput/---/' \
+		| sed '1d' > in.txt
 
-test: test.clj main
+test: test.py main
 	./$<
 
 watch_deb: main.cpp
