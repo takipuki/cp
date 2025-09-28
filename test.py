@@ -1,5 +1,6 @@
 #! /usr/bin/python3
 
+from sys import stdin
 from subprocess import run
 
 def cmp(ans, out):
@@ -13,9 +14,7 @@ def cmp(ans, out):
         else:
             print(f'{ans[i]:<35} | {out[i]:<35}')
 
-cases = []
-with open('in.txt', 'r') as file:
-    cases = file.read().strip().split('\n======\n')
+cases = stdin.read().strip().split('\n======\n')
 
 for case in cases:
     inp, ans = case.split('\n---\n')

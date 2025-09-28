@@ -8,10 +8,13 @@ flags = -std=c++23 \
 		-fno-omit-frame-pointer
 dflags = -g -Werror
 
-deb: main.cpp
+deb = deb
+main = main
+
+$(deb): main.cpp
 	g++ $(flags) $(dflags) -DDEBUG $< -o $@
 
-main: main.cpp
+$(main): main.cpp
 	g++ $(flags) -DNDEBUG -O2 $< -o $@
 
 parse:
@@ -21,11 +24,11 @@ parse:
 		| sed -E 's/[Oo]utput/---/' \
 		| sed '1d' > in.txt
 
-test: test.py main
-	./$<
+test: test.py $(main)
+	./$< < in.txt
 
 watch_deb: main.cpp
-	echo $< | entr -c make -s deb
+	echo $< | entr -c make -s $(deb)
 
 watch_main: main.cpp
-	echo $< | entr -c make -s main
+	echo $< | entr -c make -s $(main)
