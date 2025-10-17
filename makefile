@@ -20,8 +20,8 @@ $(main): main.cpp
 parse:
 	sed -E 's/([Cc]opy|[Ss]ample) *//g' \
 		| sed -E '/^$$/d' \
-		| sed -E 's/[Ii]nput/======/' \
-		| sed -E 's/[Oo]utput/---/' \
+		| sed -E 's/[Ii]nput:?/======/' \
+		| sed -E 's/[Oo]utput:?/---/' \
 		| sed '1d' > in.txt
 
 test: test.py $(main)
