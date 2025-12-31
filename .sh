@@ -1,12 +1,14 @@
 #! /usr/bin/sh
 
+source .env
+
 rn () {
-	make -s deb && ./deb
+	make -s $DEB && ./$DEB
 }
 
 
 rf () {
-	make -Bs deb && ./deb
+	make -Bs $DEB && ./$DEB
 }
 
 

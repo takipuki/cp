@@ -1,4 +1,6 @@
-flags = -std=c++23 \
+include .env
+
+flags = -std=c++20 \
 		-Wall \
 		-Wfatal-errors \
 		-Wno-unused-variable \
@@ -8,27 +10,24 @@ flags = -std=c++23 \
 		-fno-omit-frame-pointer
 dflags = -g -Werror
 
-deb = deb
-main = main
-
-$(deb): main.cpp
+$(DEB): main.cpp
 	g++ $(flags) $(dflags) -DDEBUG $< -o $@
 
-$(main): main.cpp
+$(MAIN): main.cpp
 	g++ $(flags) -DNDEBUG -O2 $< -o $@
 
 parse:
-	sed -E 's/([Cc]opy|[Ss]ample) *//g' \
+	sed -E 's/(copy|sample) *//ig' \
 		| sed -E '/^$$/d' \
-		| sed -E 's/[Ii]nput:?/======/' \
-		| sed -E 's/[Oo]utput:?/---/' \
-		| sed '1d' > in.txt
+		| sed -E 's/input:?/======/i' \
+		| sed -E 's/output:?/---/i' \
+		| sed '1d' > $(INPUT)
 
-test: test.py $(main)
-	./$< < in.txt
+test: test.py $(MAIN)
+	python ./$< < $(INPUT)
 
 watch_deb: main.cpp
-	echo $< | entr -c make -s $(deb)
+	echo $< | entr -c make -s $(DEB)
 
 watch_main: main.cpp
-	echo $< | entr -c make -s $(main)
+	echo $< | entr -c make -s $(MAIN)

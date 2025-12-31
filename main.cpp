@@ -11,6 +11,8 @@ using namespace std;
 #define ROF(i, l, r) for (decltype(r) i = (r) - 1, _ = (l); i >= _; i--)
 #define REP(n) for (decltype(n) _ = (n); _ > 0; _--)
 
+#define int int64_t
+
 void solve() {
 }
 
@@ -19,11 +21,11 @@ signed main() {
 
 #ifndef DEBUG
 	cin.tie(0)->sync_with_stdio(0);
-	// cin >> ts;
+	cin >> ts;
 #endif
 
-	for (;;) {
-		if (!ts--) break;
+	for (int tc = 1; tc <= ts; tc++) {
+		// cout << "Case " << tc << ": ";
 		solve();
 	}
 }

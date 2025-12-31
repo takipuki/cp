@@ -1,6 +1,6 @@
 #! /usr/bin/python3
 
-from sys import stdin
+from sys import stdin, exit
 from subprocess import run
 
 def cmp(ans, out):
@@ -18,9 +18,9 @@ cases = stdin.read().strip().split('\n======\n')
 
 for case in cases:
     inp, ans = case.split('\n---\n')
-    proc = run('./main', shell=True, text=True, input=inp, capture_output=True)
+    proc = run('./main', shell=False, text=True, input=inp, capture_output=True)
     if proc.returncode != 0:
         print("FAILED")
         print(case)
-        sys.exit(0)
+        exit(0)
     cmp(ans, proc.stdout)
