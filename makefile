@@ -1,6 +1,6 @@
 include .env
 
-flags = -std=c++20 \
+flags = -std=c++17 \
 		-Wall \
 		-Wfatal-errors \
 		-Wno-unused-variable \
@@ -14,7 +14,10 @@ $(DEB): main.cpp
 	g++ $(flags) $(dflags) -DDEBUG $< -o $@
 
 $(MAIN): main.cpp
-	g++ $(flags) -DNDEBUG -O2 $< -o $@
+	g++ $(flags) -DLOCAL -DNDEBUG -O2 $< -o $@
+
+fast_main: main.cpp
+	g++ -std=c++17 -DLOCAL -DNDEBUG -O2 $< -o $(MAIN)
 
 parse:
 	sed -E 's/(copy|sample) *//ig' \
@@ -27,7 +30,7 @@ test: test.py $(MAIN)
 	python ./$< < $(INPUT)
 
 watch_deb: main.cpp
-	echo $< | entr -c make -s $(DEB)
+	echo $< | entr -rc make -sB $(DEB)
 
 watch_main: main.cpp
-	echo $< | entr -c make -s $(MAIN)
+	echo $< | entr -rc make -sB $(MAIN)
