@@ -6,8 +6,8 @@ rn () {
 	make -s $DEB && ./$DEB
 }
 
-rf () {
-	make -Bs $DEB && ./$DEB
+rnm () {
+	make -s $MAIN && ./$MAIN
 }
 
 tst () {

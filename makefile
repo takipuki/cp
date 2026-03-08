@@ -6,8 +6,9 @@ flags = -std=c++17 \
 		-Wno-unused-variable \
 		-Wno-sign-compare \
 		-fsanitize=signed-integer-overflow \
-		-fsanitize=address \
 		-fno-omit-frame-pointer
+		# -fsanitize=address \
+
 dflags = -g -Werror
 
 $(DEB): main.cpp

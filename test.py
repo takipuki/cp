@@ -9,7 +9,7 @@ def cmp(ans, out):
     ans += [''] * (max(len(ans), len(out)) - len(ans))
     out += [''] * (max(len(ans), len(out)) - len(out))
     for i in range(len(ans)):
-        if ans[i] == out[i]:
+        if ans[i].rstrip() == out[i]:
             print(f'{ans[i]:<35}   {out[i]:<35}')
         else:
             print(f'{ans[i]:<35} | {out[i]:<35}')
