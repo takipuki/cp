@@ -1,4 +1,4 @@
-set nu rnu nohls noet sw=4 ts=4 bg=light list lcs=tab:\ \ 
+set nu rnu nohls noet sw=4 ts=4 bg=light list lcs=tab:\|\ ,trail:~
 set hidden autochdir virtualedit=all
 
 nnoremap <c-s> :w<cr>
@@ -18,5 +18,11 @@ iabbrev <buffer> vi vector<int>
 iabbrev <buffer> vvi vector<vector<int>>
 iabbrev <buffer> vll vector<int64_t>
 iabbrev <buffer> vvll vector<vector<int64_t>>
+iabbrev <buffer> pii pair<int, int>
+iabbrev <buffer> vpii vector<pair<int, int>>
+iabbrev <buffer> pq< priority_queue<
+iabbrev <buffer> q< queue<
 iabbrev <buffer> pb push_back
 iabbrev <buffer> pf push_front
+iabbrev <buffer> ppb pop_back
+iabbrev <buffer> ppf pop_front

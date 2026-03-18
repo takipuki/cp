@@ -42,6 +42,7 @@ usct () {
 }
 
 alias gdb='ASAN_OPTIONS=detect_leaks=0 gdb'
+alias gf2='ASAN_OPTIONS=detect_leaks=0 gf2'
 
 
 bodd () {
