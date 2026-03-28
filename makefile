@@ -28,6 +28,9 @@ parse:
 		| sed -E 's/output:?/---/i' \
 		| sed '1d' > $(INPUT)
 
+get_testcase:
+	[ -z "$(tc)" ] && cat $(INPUT) || awk -v RS='======' "NR==$(tc)" < $(INPUT)
+
 test: test.py $(MAIN)
 	python ./$< < $(INPUT)
 

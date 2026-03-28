@@ -18,6 +18,10 @@ prs () {
 	make -s parse
 }
 
+t () {
+	make -s get_testcase tc=$1
+}
+
 TIMEFMT='%E'
 usc () {
 	rm -rf usaco
