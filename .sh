@@ -1,6 +1,6 @@
 #! /usr/bin/sh
 
-source .env
+source ./.env
 
 rn () {
 	make -s $DEB && ./$DEB
@@ -20,6 +20,14 @@ prs () {
 
 t () {
 	make -s get_testcase tc=$1
+}
+
+gr () {
+	awk '/./ {printf("%d-(%d)-%d\n", $1, $3, $2)}'
+}
+
+rg () {
+	awk -F '-' '/./ {printf("%d %d %s\n", $1, $3, $2)}' | tr -d '()'
 }
 
 TIMEFMT='%E'

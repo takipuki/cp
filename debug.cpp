@@ -43,7 +43,7 @@ void __print(const tuple<T1, T2, T3> &x) {
 	cerr << ", ";
 	__print(get<1>(x));
 	cerr << ", ";
-	__print(get<3>(x)); cerr << '}';
+	__print(get<2>(x)); cerr << '}';
 }
 
 template<typename T>

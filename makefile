@@ -6,9 +6,10 @@ flags = -std=c++17 \
 		-Wno-unused-variable \
 		-Wno-sign-compare \
 		-fsanitize=signed-integer-overflow \
-		-fsanitize=address \
-		-fno-omit-frame-pointer \
+		-D_GLIBCXX_DEBUG \
 		$(extra)
+		# -fsanitize=address \
+		# -fno-omit-frame-pointer \
 
 dflags = -g -Werror
 
@@ -24,8 +25,8 @@ fast_main: main.cpp
 parse:
 	sed -E 's/(copy|sample) *//ig' \
 		| sed -E '/^$$/d' \
-		| sed -E 's/input:?/======/i' \
-		| sed -E 's/output:?/---/i' \
+		| sed -E 's/input:?.*/======/i' \
+		| sed -E 's/(output:?|\t).*/---/i' \
 		| sed '1d' > $(INPUT)
 
 get_testcase:
