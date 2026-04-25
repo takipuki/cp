@@ -5,6 +5,7 @@ flags = -std=c++17 \
 		-Wfatal-errors \
 		-Wno-unused-variable \
 		-Wno-sign-compare \
+		-Wconversion \
 		-fsanitize=signed-integer-overflow \
 		-D_GLIBCXX_DEBUG \
 		$(extra)
@@ -13,10 +14,13 @@ flags = -std=c++17 \
 
 dflags = -g -Werror
 
-$(DEB): main.cpp
+check_ll: main.cpp
+	grep -nE '\b[0-9]+[^el]' $< || true
+
+$(DEB): main.cpp check_ll
 	g++ $(flags) $(dflags) -DDEBUG $< -o $@
 
-$(MAIN): main.cpp
+$(MAIN): main.cpp check_ll
 	g++ $(flags) -DLOCAL -DNDEBUG -O2 $< -o $@
 
 fast_main: main.cpp

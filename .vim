@@ -1,13 +1,12 @@
 set nowrap nu rnu nohls noet sw=4 ts=4 bg=light list lcs=tab:\|\ ,trail:~
 set hidden autochdir virtualedit=all
 
-nnoremap <c-s> :w<cr>
-nnoremap ,y '*y
-nnoremap ,p '*p
+"nnoremap <c-s> :w<cr>
+"nnoremap ,y '*y
+"nnoremap ,p '*p
 
 iabbrev <buffer> ci cin >>
 iabbrev <buffer> co cout <<
-iabbrev <buffer> ll int64_t
 iabbrev <buffer> str string
 iabbrev <buffer> v< vector<
 iabbrev <buffer> p< pair<
