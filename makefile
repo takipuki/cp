@@ -15,11 +15,9 @@ flags = -std=c++17 \
 dflags = -g -Werror
 
 $(DEB): main.cpp
-	grep -nE '\b[0-9]+[^el]' $< || true
 	g++ $(flags) $(dflags) -DDEBUG $< -o $@
 
 $(MAIN): main.cpp
-	grep -nE '\b[0-9]+[^el]' $< || true
 	g++ $(flags) -DLOCAL -DNDEBUG -O2 $< -o $@
 
 fast_main: main.cpp
