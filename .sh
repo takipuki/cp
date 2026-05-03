@@ -1,13 +1,13 @@
 #! /usr/bin/sh
 
-source ./.env
+. ./.env
 
 rn () {
-	make -s $DEB && ./$DEB
+	make -s "$DEB" && "./$DEB"
 }
 
 rnm () {
-	make -s $MAIN && ./$MAIN
+	make -s "$MAIN" && "./$MAIN"
 }
 
 tst () {
@@ -19,7 +19,7 @@ prs () {
 }
 
 t () {
-	make -s get_testcase tc=$1
+	make -s get_testcase tc="$1"
 }
 
 gr () {
@@ -30,26 +30,26 @@ rg () {
 	awk -F '-' '/./ {printf("%d %d %s\n", $1, $3, $2)}' | tr -d '()'
 }
 
-TIMEFMT='%E'
+export TIMEFMT='%E'
 usc () {
 	rm -rf usaco
 	7z x -aoa -ousaco "$1" > /dev/null
-	(cd usaco && perl-rename 's/^\d\./0$&/' *)
+	(cd usaco && perl-rename 's/^\d\./0$&/' -- *)
 }
 
 usct () {
-	make -s $MAIN || return
-	ls -1 -d usaco/*.in |
+	make -s "$MAIN" || return
+	find usaco -name '*\.in' |
 		sort -n |
-		while read f; do
+		while read -r f; do
 			f=${f%.in}
-			echo -n test $f
-			time (
-				./main < $f.in |
-					diff -wq $f.out - > /dev/null &&
+			echo -n test "$f"
+			time sh -c "
+				./main < \"$f.in\" |
+					diff -wq \"$f.out\" - > /dev/null &&
 					echo -n '   ' ||
 					echo -n ' ! '
-			)
+			"
 		done
 }
 
@@ -58,13 +58,13 @@ alias gf2='ASAN_OPTIONS=detect_leaks=0 gf2'
 
 
 bodd () {
-	[ -n "$1" -o main.odin -nt deb ] && odin build main.odin \
+	[ -n "$1" ] || [ main.odin -nt deb ] && odin build main.odin \
 		-file -out:deb \
 		-sanitize:address
 }
 
 bod () {
-	[ -n "$1" -o main.odin -nt main ] && odin build main.odin \
+	[ -n "$1" ] || [ main.odin -nt main ] && odin build main.odin \
 		-file -out:main \
 		-no-bounds-check \
 		-o:speed \

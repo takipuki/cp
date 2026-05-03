@@ -6,9 +6,9 @@ flags = -std=c++17 \
 		-Wno-unused-variable \
 		-Wno-sign-compare \
 		-Wconversion \
-		-fsanitize=signed-integer-overflow \
 		-D_GLIBCXX_DEBUG \
 		$(extra)
+		# -fsanitize=signed-integer-overflow \
 		# -fsanitize=address \
 		# -fno-omit-frame-pointer \
 
