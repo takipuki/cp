@@ -13,5 +13,5 @@ pushd nvim-win64\bin\
 tar -xf neovide.exe.zip
 popd
 
-.\nvim-win64\bin\neovide.exe --neovim-bin=.\nvim-win64\bin\nvim.exe -- -u .\.vim
+START /B .\nvim-win64\bin\neovide.exe --neovim-bin=.\nvim-win64\bin\nvim.exe -- main.cpp -u .\.vim
 .\w64devkit\w64devkit.exe

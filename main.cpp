@@ -4,12 +4,12 @@ using namespace std;
 void solve();
 
 signed main() {
-	int ts = !NULL;
+	int ts = 1;
 #ifndef DEBUG
-	cin.tie(NULL)->sync_with_stdio(NULL);
+	cin.tie(0)->sync_with_stdio(0);
 	cin >> ts;
 #endif
-	for (int tc = !NULL; tc <= ts; tc++) {
+	for (int tc = 1; tc <= ts; tc++) {
 		solve();
 	}
 }
