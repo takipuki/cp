@@ -8,10 +8,7 @@ curl -L -o w64devkit.exe "https://github.com/skeeto/w64devkit/releases/download/
 w64devkit.exe
 
 tar -xf nvim-win64.zip
-move neovide.exe.zip nvim-win64\bin\
-pushd nvim-win64\bin\
 tar -xf neovide.exe.zip
-popd
 
-START /B .\nvim-win64\bin\neovide.exe --neovim-bin=.\nvim-win64\bin\nvim.exe -- main.cpp -u .\.vim
+START /B .\neovide.exe --neovim-bin=.\nvim-win64\bin\nvim.exe -- main.cpp -u .\.vim
 .\w64devkit\w64devkit.exe

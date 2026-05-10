@@ -30,50 +30,5 @@ rg () {
 	awk -F '-' '/./ {printf("%d %d %s\n", $1, $3, $2)}' | tr -d '()'
 }
 
-export TIMEFMT='%E'
-usc () {
-	rm -rf usaco
-	7z x -aoa -ousaco "$1" > /dev/null
-	(cd usaco && perl-rename 's/^\d\./0$&/' -- *)
-}
-
-usct () {
-	make -s "$MAIN" || return
-	find usaco -name '*\.in' |
-		sort -n |
-		while read -r f; do
-			f=${f%.in}
-			echo -n test "$f"
-			time sh -c "
-				./main < \"$f.in\" |
-					diff -wq \"$f.out\" - > /dev/null &&
-					echo -n '   ' ||
-					echo -n ' ! '
-			"
-		done
-}
-
 alias gdb='ASAN_OPTIONS=detect_leaks=0 gdb'
 alias gf2='ASAN_OPTIONS=detect_leaks=0 gf2'
-
-
-bodd () {
-	[ -n "$1" ] || [ main.odin -nt deb ] && odin build main.odin \
-		-file -out:deb \
-		-sanitize:address
-}
-
-bod () {
-	[ -n "$1" ] || [ main.odin -nt main ] && odin build main.odin \
-		-file -out:main \
-		-no-bounds-check \
-		-o:speed \
-		-no-type-assert
-}
-
-wod () {
-	echo main.odin |
-		entr -rc odin build main.odin \
-			-file -out:deb \
-			-sanitize:address
-}
