@@ -15,7 +15,6 @@ signed main() {
 }
 
 #ifdef DEBUG
-#include <cassert>
 #include "debug.cpp"
 #else
 #define deb(...)
