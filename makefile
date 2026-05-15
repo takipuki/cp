@@ -34,7 +34,7 @@ get_testcase:
 	[ -z "$(tc)" ] && cat $(INPUT) || awk -v RS='======' "NR==$(tc)" < $(INPUT)
 
 test: test.py $(MAIN)
-	python ./$< < $(INPUT)
+	python ./$< $(MAIN) < $(INPUT)
 
 watch_deb: main.cpp
 	echo $< | entr -rc make -sB $(DEB)

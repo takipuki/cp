@@ -1,7 +1,14 @@
 #! /usr/bin/python3
 
-from sys import stdin, exit
+import sys
 from subprocess import run
+
+if len(sys.argv) < 2:
+    print(f'''\
+USAGE
+	{sys.argv[0]} <program>
+''')
+    sys.exit(1)
 
 def cmp(ans, out):
     ans = ans.strip().split('\n')
@@ -14,13 +21,13 @@ def cmp(ans, out):
         else:
             print(f'{ans[i]:<35} | {out[i]:<35}')
 
-cases = stdin.read().strip().split('\n======\n')
+cases = sys.stdin.read().strip().split('\n======\n')
 
 for case in cases:
     inp, ans = case.split('\n---\n')
-    proc = run('./main', shell=False, text=True, input=inp, capture_output=True)
+    proc = run(sys.argv[1], shell=False, text=True, input=inp, capture_output=True)
     if proc.returncode != 0:
-        print("FAILED")
+        print("FAILED", file=sys.stderr)
         print(case)
-        exit(0)
+        sys.exit(1)
     cmp(ans, proc.stdout)
