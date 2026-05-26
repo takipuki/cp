@@ -1,18 +1,19 @@
 include .env
 
-flags = -std=c++17 \
-		-Wall \
-		-Wfatal-errors \
-		-Wno-unused-variable \
-		-Wno-sign-compare \
-		-Wconversion \
-		-D_GLIBCXX_DEBUG \
-		$(extra)
-		# -fsanitize=signed-integer-overflow \
-		# -fsanitize=address \
-		# -fno-omit-frame-pointer \
+flags = \
+	-std=c++17 \
+	-Wall \
+	-Wfatal-errors \
+	-Wno-unused-variable \
+	-Wno-sign-compare \
+	-Wconversion \
+	-D_GLIBCXX_DEBUG \
+	$(extra)
+	# -fsanitize=signed-integer-overflow \
+	# -fsanitize=address \
+	# -fno-omit-frame-pointer \
 
-dflags = -g -Werror
+dflags = -g3 -Werror
 
 $(DEB): main.cpp
 	g++ $(flags) $(dflags) -DDEBUG $< -o $@
