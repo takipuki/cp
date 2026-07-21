@@ -2,21 +2,21 @@ include .env
 
 flags = \
 	-std=c++17 \
+	-g3 \
+	-Werror \
 	-Wall \
 	-Wfatal-errors \
 	-Wno-unused-variable \
 	-Wno-sign-compare \
 	-Wconversion \
 	-D_GLIBCXX_DEBUG \
+	-fsanitize=signed-integer-overflow \
 	$(extra)
-	# -fsanitize=signed-integer-overflow \
 	# -fsanitize=address \
 	# -fno-omit-frame-pointer \
 
-dflags = -g3 -Werror
-
 $(DEB): main.cpp
-	g++ $(flags) $(dflags) -DDEBUG $< -o $@
+	g++ $(flags) -DDEBUG $< -o $@
 
 $(MAIN): main.cpp
 	g++ $(flags) -DLOCAL -DNDEBUG -O2 $< -o $@
@@ -27,8 +27,8 @@ fast_main: main.cpp
 parse:
 	sed -E 's/(copy|sample) *//ig' \
 		| sed -E '/^$$/d' \
-		| sed -E 's/input:?.*/======/i' \
-		| sed -E 's/(output:?|\t).*/---/i' \
+		| sed -E 's/.*input:?.*/======/i' \
+		| sed -E 's/.*(output:?|\t).*/---/i' \
 		| sed '1d' > $(INPUT)
 
 get_testcase:

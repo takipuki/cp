@@ -3,31 +3,31 @@
 . ./.env
 
 rn () {
-	make -s "$DEB" && "./$DEB"
+  make -s "$DEB" && "./$DEB"
 }
 
 rnm () {
-	make -s "$MAIN" && "./$MAIN"
+  make -s "$MAIN" && "./$MAIN"
 }
 
 tst () {
-	make -s test
+  make -s test
 }
 
 prs () {
-	make -s parse
+  make -s parse
 }
 
 t () {
-	make -s get_testcase tc="$1"
+  make -s get_testcase tc="$1"
 }
 
 gr () {
-	awk '/./ {printf("%d-(%d)-%d\n", $1, $3, $2)}'
+  awk '/./ {printf("%d-(%d)-%d\n", $1, $3, $2)}'
 }
 
 rg () {
-	awk -F '-' '/./ {printf("%d %d %s\n", $1, $3, $2)}' | tr -d '()'
+  awk -F '-' '/./ {printf("%d %d %s\n", $1, $3, $2)}' | tr -d '()'
 }
 
 alias gdb='ASAN_OPTIONS=detect_leaks=0 gdb'

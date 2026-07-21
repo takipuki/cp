@@ -1,4 +1,4 @@
-set nowrap nu rnu nohls noet sw=4 ts=4 bg=light list lcs=tab:\|\ ,trail:~
+set nowrap nu rnu nohls et sw=2 ts=2 bg=light list lcs=tab:\|\ ,trail:~
 set hidden autochdir virtualedit=all
 
 nnoremap <c-s> :w<cr>
@@ -14,15 +14,16 @@ iabbrev <buffer> p< pair<
 iabbrev <buffer> m< map<
 iabbrev <buffer> s< set<
 iabbrev <buffer> a< array<
+iabbrev <buffer> q< queue<
+iabbrev <buffer> pq< priority_queue<
 iabbrev <buffer> vi vector<int>
 iabbrev <buffer> vvi vector<vector<int>>
-iabbrev <buffer> vll vector<int64_t>
-iabbrev <buffer> vvll vector<vector<int64_t>>
 iabbrev <buffer> pii pair<int, int>
 iabbrev <buffer> vpii vector<pair<int, int>>
-iabbrev <buffer> pq< priority_queue<
-iabbrev <buffer> q< queue<
 iabbrev <buffer> pb push_back
 iabbrev <buffer> pf push_front
 iabbrev <buffer> ppb pop_back
 iabbrev <buffer> ppf pop_front
+
+iabbrev <buffer> forn FOR(i, 0, n)
+iabbrev <buffer> form FOR(i, 0, m)

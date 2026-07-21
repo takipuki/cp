@@ -2,38 +2,46 @@
 #include <cassert>
 using namespace std;
 
-void solve();
-
-signed main() {
-	int ts = 1;
-#ifndef DEBUG
-	cin.tie(0)->sync_with_stdio(0);
-	cin >> ts;
-#endif
-	for (int tc = 1; tc <= ts; tc++) {
-		solve();
-	}
-}
-
 #ifdef DEBUG
 #include "debug.cpp"
 #else
 #define deb(...)
 #endif
 
-string sep = "";
-#define spc sep, sep = " ", cout
-#define nl (sep = "", "\n")
+string __sep = "";
+#define spc __sep, __sep = " ", cout
+#define nl (__sep = "", "\n")
 
 #define int long long
-constexpr int INF = 1e17;
+constexpr int inf = 1e17;
 #define FOR(i, l, r) for (int i = (l), __r = (r); i < __r; i++)
 #define ROF(i, l, r) for (int i = (r)-1, __l = (l); i >= __l; i--)
 #define REP(n) for (int __n = (n); __n > 0; __n--)
 #define all(x) begin(x), end(x)
 #define rll(x) rbegin(x), rend(x)
-#define mxe(x) max_element(x)
-#define mne(x) min_element(x)
+const string yes[2] = {"No", "Yes"};
+
+void memuse() {
+  ifstream file("/proc/self/status");
+  string line;
+  REP(22) getline(file, line);
+  cerr << line << '\n';
+}
+
+void solve();
+signed main() {
+#ifdef DEBUG
+  solve();
+#else
+  cin.tie(0)->sync_with_stdio(0);
+  int ts = 1;
+  cin >> ts;
+  for (int tc = 1; tc <= ts; tc++) {
+    cout << "Case " << tc << ": ";
+    solve();
+  }
+#endif
+}
 
 void solve() {
 }

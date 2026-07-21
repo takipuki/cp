@@ -6,15 +6,14 @@ from subprocess import run
 if len(sys.argv) < 2:
     print(f'''\
 USAGE
-	{sys.argv[0]} <program>
+    {sys.argv[0]} <program> < input.txt
 ''')
     sys.exit(1)
+
 
 def cmp(ans, out):
     ans = ans.strip().splitlines()
     out = out.strip().splitlines()
-    ans[1:] = sorted(ans[1:])
-    out[1:] = sorted(out[1:])
     ans += [''] * (max(len(ans), len(out)) - len(ans))
     out += [''] * (max(len(ans), len(out)) - len(out))
     passed = True
@@ -25,6 +24,7 @@ def cmp(ans, out):
             print(f'{ans[i]:<35} | {out[i]:<35}')
             passed = False
     return passed
+
 
 cases = sys.stdin.read().strip().split('\n======\n')
 

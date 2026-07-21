@@ -22,36 +22,36 @@ void __print(const bitset<N> &x) {cerr << x;}
 
 template<typename T, typename V>
 void __print(const pair<T, V> &x) {
-	cerr << '{';
-	__print(x.first);
-	cerr << ", ";
-	__print(x.second); cerr << '}';
+  cerr << '{';
+  __print(x.first);
+  cerr << ", ";
+  __print(x.second); cerr << '}';
 }
 
 template<typename T1, typename T2>
 void __print(const tuple<T1, T2> &x) {
-	cerr << '{';
-	__print(get<0>(x));
-	cerr << ", ";
-	__print(get<1>(x)); cerr << '}';
+  cerr << '{';
+  __print(get<0>(x));
+  cerr << ", ";
+  __print(get<1>(x)); cerr << '}';
 }
 
 template<typename T1, typename T2, typename T3>
 void __print(const tuple<T1, T2, T3> &x) {
-	cerr << '{';
-	__print(get<0>(x));
-	cerr << ", ";
-	__print(get<1>(x));
-	cerr << ", ";
-	__print(get<2>(x)); cerr << '}';
+  cerr << '{';
+  __print(get<0>(x));
+  cerr << ", ";
+  __print(get<1>(x));
+  cerr << ", ";
+  __print(get<2>(x)); cerr << '}';
 }
 
 template<typename T>
 void __print(const T &x) {
-	int f = 0;
-	cerr << '[';
-	for (auto &i: x) cerr << (f++ ? ", " : ""), __print(i);
-	cerr << "]";
+  int f = 0;
+  cerr << '[';
+  for (auto &i: x) cerr << (f++ ? ", " : ""), __print(i);
+  cerr << "]";
 }
 
 void _print() {cerr << "\n";}
