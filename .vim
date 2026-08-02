@@ -25,5 +25,8 @@ iabbrev <buffer> pf push_front
 iabbrev <buffer> ppb pop_back
 iabbrev <buffer> ppf pop_front
 
-iabbrev <buffer> forn FOR(i, 0, n)
-iabbrev <buffer> form FOR(i, 0, m)
+iabbrev <buffer> foi  FOR(i, 0,
+iabbrev <buffer> foi1 FOR(i, 1,
+iabbrev <buffer> foj  FOR(j, 0,
+iabbrev <buffer> foj1 FOR(j, 1,
+

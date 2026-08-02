@@ -32,7 +32,7 @@ parse:
 		| sed '1d' > $(INPUT)
 
 get_testcase:
-	[ -z "$(tc)" ] && cat $(INPUT) || awk -v RS='======' "NR==$(tc)" < $(INPUT)
+	[ -z "$(tc)" ] && cat $(INPUT) || awk -v RS='======' "NR==$(tc)" < $(INPUT) | grep -v '^$$'
 
 test: test.py $(MAIN)
 	python ./$< $(MAIN) < $(INPUT)

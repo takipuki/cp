@@ -19,14 +19,7 @@ constexpr int inf = 1e17;
 #define REP(n) for (int __n = (n); __n > 0; __n--)
 #define all(x) begin(x), end(x)
 #define rll(x) rbegin(x), rend(x)
-const string yes[2] = {"No", "Yes"};
-
-void memuse() {
-  ifstream file("/proc/self/status");
-  string line;
-  REP(22) getline(file, line);
-  cerr << line << '\n';
-}
+const string yes[2] = {"NO", "YES"};
 
 void solve();
 signed main() {
@@ -37,7 +30,7 @@ signed main() {
   int ts = 1;
   cin >> ts;
   for (int tc = 1; tc <= ts; tc++) {
-    cout << "Case " << tc << ": ";
+    // cout << "Case " << tc << ": ";
     solve();
   }
 #endif
