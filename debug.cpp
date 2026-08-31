@@ -1,19 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void __print(int x) {cerr << x;}
-void __print(long x) {cerr << x;}
-void __print(long long x) {cerr << x;}
-void __print(unsigned x) {cerr << x;}
-void __print(unsigned long x) {cerr << x;}
-void __print(unsigned long long x) {cerr << x;}
-void __print(float x) {cerr << x;}
-void __print(double x) {cerr << x;}
-void __print(long double x) {cerr << x;}
-void __print(char x) {cerr << '\'' << x << '\'';}
-void __print(const char *x) {cerr << '\"' << x << '\"';}
-void __print(const string &x) {cerr << '\"' << x << '\"';}
-void __print(bool x) {cerr << (x ? "true" : "false");}
+long double _inf = 1e17;
+void __print(int x)                { if (x < _inf) cerr << x; else cerr << "inf"; }
+void __print(long x)               { if (x < _inf) cerr << x; else cerr << "inf"; }
+void __print(long long x)          { if (x < _inf) cerr << x; else cerr << "inf"; }
+void __print(unsigned x)           { if (x < _inf) cerr << x; else cerr << "inf"; }
+void __print(unsigned long x)      { if (x < _inf) cerr << x; else cerr << "inf"; }
+void __print(unsigned long long x) { if (x < _inf) cerr << x; else cerr << "inf"; }
+void __print(float x)              { if (x < _inf) cerr << x; else cerr << "inf"; }
+void __print(double x)             { if (x < _inf) cerr << x; else cerr << "inf"; }
+void __print(long double x)        { if (x < _inf) cerr << x; else cerr << "inf"; }
+void __print(char x)               { cerr << '\'' << x << '\'';}
+void __print(const char *x)        { cerr << '\"' << x << '\"';}
+void __print(const string &x)      { cerr << '\"' << x << '\"';}
+void __print(bool x)               { cerr << (x ? "true" : "false");}
 
 void __print(string::iterator it) {cerr << *it;}
 

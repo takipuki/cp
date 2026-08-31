@@ -1,9 +1,11 @@
-set nowrap nu rnu nohls et sw=2 ts=2 bg=light list lcs=tab:\|\ ,trail:~
+set ai si nowrap nu rnu nohls et sw=2 ts=2 bg=light list lcs=tab:\|\ ,trail:~
 set hidden autochdir virtualedit=all
 
 nnoremap <c-s> :w<cr>
 nnoremap ,y "+y
 nnoremap ,p "+p
+nnoremap ,Y "+Y
+nnoremap ,P "+P
 nnoremap gy :%y+<cr>
 
 iabbrev <buffer> ci cin >>
@@ -24,9 +26,3 @@ iabbrev <buffer> pb push_back
 iabbrev <buffer> pf push_front
 iabbrev <buffer> ppb pop_back
 iabbrev <buffer> ppf pop_front
-
-iabbrev <buffer> foi  FOR(i, 0,
-iabbrev <buffer> foi1 FOR(i, 1,
-iabbrev <buffer> foj  FOR(j, 0,
-iabbrev <buffer> foj1 FOR(j, 1,
-
