@@ -97,20 +97,34 @@ template<typename T = int>
 struct SegTree {
   const int k;
   vector<T> tr;
+  vector<typename T::UpdateArg> pending;
 
   SegTree(int n)
     : k(bit_ceil(n))
     , tr(2*k)
+    , pending(2*k, T::IDENTITY_UPDATE_ARG)
   { }
 
   void init() {
     rf(i, 1, k) tr[i] = tr[2*i] + tr[2*i+1];
   }
 
-  T query(int l, int r) {
-    return query(l, r, 1, 0, k-1);
+  void inc(int l, int r, int d) { inc(l, r, d, 1, 0, k-1); }
+  void inc(int l, int r, int d, int i, int a, int b) {
+    if (b < l or r < a) return;
+    if (l <= a and b <= r) {
+      tr[i] = tr[i].apply({1, (b-a+1)*d});
+      if (i < k) {
+        // TODO
+      }
+      return;
+    }
+
+    int m = (a+b)/2;
+    return query(l, r, 2*i, a, m) + query(l, r, 2*i+1, m+1, b);
   }
 
+  T query(int l, int r) { return query(l, r, 1, 0, k-1); }
   T query(int l, int r, int i, int a, int b) {
     if (b < l or r < a) return tr[0];
     if (l <= a and b <= r) return tr[i];
@@ -120,29 +134,41 @@ struct SegTree {
   }
 };
 
-struct Node {
+struct NodeSum {
+  using This = NodeSum;
+  using UpdateArg = tuple<int, int>;
+  static constexpr UpdateArg IDENTITY_UPDATE_ARG{1, 0};
+
   int value;
 
-  Node inc(int cnt_children, int increment) {
-    return Node{this->value + cnt_children * increment};
+  // x = ax0 + b
+  void apply(UpdateArg arg) {
+    auto [a, b] = arg;
+    value = a*value + b;
   }
 
-  Node operator+(const Node b) { return Node{this->value + b.value}; }
-};
+  static UpdateArg combine_updates(UpdateArg arg1, UpdateArg arg2) {
+    auto [a1, b1] = arg1;
+    auto [a2, b2] = arg1;
+    return UpdateArg{a1*a2, a2*b1 + b2};
+  }
 
-ostream& operator<<(ostream &os, Node &b) {
-  return os << b.value;
-}
-istream& operator>>(istream &is, Node &b) {
-  return is >> b.value;
-}
-void __print(Node a) {
-  cerr << a.value;
-}
+  This operator+(const This b) { return This{this->value + b.value}; }
+
+  friend ostream& operator<<(ostream& os, const This& b) {
+    return os << b.value;
+  }
+  friend istream& operator>>(istream& is, This& b) {
+    return is >> b.value;
+  }
+  friend void __print(const This& a) {
+    cerr << a.value;
+  }
+};
 
 void solve() {
   int n, q; cin >> n >> q;
-  SegTree<Node> st(+n);
+  SegTree<NodeSum> st(+n);
   in(slc(st.tr, st.k, st.k+n));
   st.init();
 
