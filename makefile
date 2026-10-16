@@ -20,7 +20,7 @@ $(DEB): main.cpp debug.cpp
 $(MAIN): main.cpp
 	g++ $(CXXFLAGS) $(flags) -DLOCAL -DNDEBUG -O2 $< -o $@
 
-fast_main: main.cpp
+fast: main.cpp
 	g++ $(CXXFLAGS) -DLOCAL -DNDEBUG -O2 $< -o $(MAIN)
 
 parse:
@@ -34,7 +34,7 @@ get_testcase:
 	[ -z "$(tc)" ] && cat $(INPUT) || awk -v RS='======' "NR==$(tc)" < $(INPUT) | grep -v '^$$'
 
 test: test.py $(MAIN)
-	python ./$< $(MAIN) < $(INPUT)
+	python $< ./$(MAIN) < $(INPUT)
 
 watch_deb: main.cpp debug.cpp
 	ls $^ | entr -rc make -sB $(DEB)

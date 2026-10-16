@@ -2,15 +2,15 @@
 using namespace std;
 
 long double _inf = 1e17;
-void __print(int x)                { if (x < _inf) cerr << x; else cerr << "inf"; }
-void __print(long x)               { if (x < _inf) cerr << x; else cerr << "inf"; }
-void __print(long long x)          { if (x < _inf) cerr << x; else cerr << "inf"; }
-void __print(unsigned x)           { if (x < _inf) cerr << x; else cerr << "inf"; }
-void __print(unsigned long x)      { if (x < _inf) cerr << x; else cerr << "inf"; }
-void __print(unsigned long long x) { if (x < _inf) cerr << x; else cerr << "inf"; }
-void __print(float x)              { if (x < _inf) cerr << x; else cerr << "inf"; }
-void __print(double x)             { if (x < _inf) cerr << x; else cerr << "inf"; }
-void __print(long double x)        { if (x < _inf) cerr << x; else cerr << "inf"; }
+void __print(int x)                { if (-_inf < x and x < _inf) cerr << x; else cerr << "+-"[x < _inf] << "inf"; }
+void __print(long x)               { if (-_inf < x and x < _inf) cerr << x; else cerr << "+-"[x < _inf] << "inf"; }
+void __print(long long x)          { if (-_inf < x and x < _inf) cerr << x; else cerr << "+-"[x < _inf] << "inf"; }
+void __print(unsigned x)           { if (-_inf < x and x < _inf) cerr << x; else cerr << "+-"[x < _inf] << "inf"; }
+void __print(unsigned long x)      { if (-_inf < x and x < _inf) cerr << x; else cerr << "+-"[x < _inf] << "inf"; }
+void __print(unsigned long long x) { if (-_inf < x and x < _inf) cerr << x; else cerr << "+-"[x < _inf] << "inf"; }
+void __print(float x)              { if (-_inf < x and x < _inf) cerr << x; else cerr << "+-"[x < _inf] << "inf"; }
+void __print(double x)             { if (-_inf < x and x < _inf) cerr << x; else cerr << "+-"[x < _inf] << "inf"; }
+void __print(long double x)        { if (-_inf < x and x < _inf) cerr << x; else cerr << "+-"[x < _inf] << "inf"; }
 void __print(char x)               { cerr << '\'' << x << '\'';}
 void __print(const char *x)        { cerr << '\"' << x << '\"';}
 void __print(const string &x)      { cerr << '\"' << x << '\"';}
